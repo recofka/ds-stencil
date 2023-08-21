@@ -27,7 +27,7 @@ export class FormComponent {
   private checkValidity(event) {
     const changedModel = event.detail;
     this.errors = changedModel.validators.reduce((acc, curr) => (!curr(changedModel.value) ? acc : { ...acc, ...curr(changedModel.value) }), null);
-    
+
     this.isDisabled = Boolean(this.errors);
   }
 
