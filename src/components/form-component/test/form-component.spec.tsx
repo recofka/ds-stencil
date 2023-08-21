@@ -10,7 +10,12 @@ describe('form-component', () => {
     expect(page.root).toEqualHtml(`
       <form-component>
         <mock:shadow-root>
-          <slot></slot>
+          <form class="form">
+            <amount-input-component></amount-input-component>
+              <button aria-label="Button Submit Form" class="btn" disabled title="Submit the Form" type="submit">
+                Submit
+              </button>
+          </form>
         </mock:shadow-root>
       </form-component>
     `);
