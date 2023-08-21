@@ -22,6 +22,12 @@ export class AmountInputComponent {
   private whole: number;
   private decimals: number;
 
+  constructor() {
+    // Bind event handlers to the class instance
+    this.handleWholeChange = this.handleWholeChange.bind(this);
+    this.handleDecimalsChange = this.handleDecimalsChange.bind(this);
+  }
+
   private updateModel() {
     const calculatedValue = parseFloat(`${this.whole}.${this.decimals}`);
     this.update.emit({ ...this.model, value: calculatedValue });
@@ -32,7 +38,7 @@ export class AmountInputComponent {
   }
 
   private formatThousands(value: number) {
-    return value ? this.whole.toLocaleString() : '';
+    return value !== 0 ? this.whole.toLocaleString() : '';
   }
 
   private handleWholeChange(event: Event) {
@@ -57,7 +63,7 @@ export class AmountInputComponent {
     return (
       <Host>
         <div class="inputContainer">
-          <input aria-label="whole" type="text" placeholder="0" aria-describedby="whole-input" maxlength="15" pattern="\d*" onInput={this.handleWholeChange.bind(this)} />
+          <input aria-label="whole" type="text" placeholder="0" aria-describedby="whole-input" maxlength="15" pattern="\d*" onInput={this.handleWholeChange} />
           <span>{getDecimalSeparator()}</span>
           <input
             class="input-decimals"
@@ -69,7 +75,7 @@ export class AmountInputComponent {
             max="99"
             aria-describedby="decimals-input"
             pattern="\d*"
-            onInput={this.handleDecimalsChange.bind(this)}
+            onInput={this.handleDecimalsChange}
           />
         </div>
       </Host>
