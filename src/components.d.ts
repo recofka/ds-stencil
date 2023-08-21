@@ -5,8 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { FormItemModel } from "./components/amount-input-component/amount-input-component";
-export { FormItemModel } from "./components/amount-input-component/amount-input-component";
+import { FormItemModel } from "./model/form.model";
+export { FormItemModel } from "./model/form.model";
 export namespace Components {
     interface AmountInputComponent {
         /**

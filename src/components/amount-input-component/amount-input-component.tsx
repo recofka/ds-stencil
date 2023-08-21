@@ -1,22 +1,6 @@
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
 import { getDecimalSeparator } from '../../utils/utils';
-
-export interface ValidationError {
-  [error: string]: string;
-}
-
-export type Validator = (value: any) => ValidationError | null;
-
-export interface FormItemModel {
-  value: string | number | undefined;
-  validators: Array<Validator>;
-}
-
-export interface FormModel {
-  fields: {
-    [formItem: string]: FormItemModel;
-  };
-}
+import { FormItemModel } from '../../model/form.model';
 
 @Component({
   tag: 'amount-input-component',

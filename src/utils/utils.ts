@@ -1,4 +1,5 @@
-import { ValidationError } from '../components/amount-input-component/amount-input-component';
+import { ValidationError } from "../model/form.model";
+
 
 export function required(value: any): ValidationError | null {
   return value

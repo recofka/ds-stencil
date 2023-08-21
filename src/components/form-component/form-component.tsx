@@ -1,6 +1,7 @@
 import { Component, Host, State, h } from '@stencil/core';
-import { FormModel, ValidationError } from '../amount-input-component/amount-input-component';
+
 import { required } from '../../utils/utils';
+import { FormModel, ValidationError } from '../../model/form.model';
 
 @Component({
   tag: 'form-component',
