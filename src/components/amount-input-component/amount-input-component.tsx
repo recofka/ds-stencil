@@ -1,4 +1,5 @@
 import { Component, Event, EventEmitter, Host, Prop, h } from '@stencil/core';
+import { getDecimalSeparator } from '../../utils/utils';
 
 export interface ValidationError {
   [error: string]: string;
@@ -14,9 +15,8 @@ export interface FormItemModel {
 export interface FormModel {
   fields: {
     [formItem: string]: FormItemModel;
-  }
+  };
 }
-
 
 @Component({
   tag: 'amount-input-component',
@@ -39,19 +39,23 @@ export class AmountInputComponent {
   private decimals: number;
 
   private updateModel() {
-    this.model.value = parseFloat(`${this.whole}.${this.decimals}`);
-    this.update.emit(this.model);
+    const calculatedValue = parseFloat(`${this.whole}.${this.decimals}`);
+    this.update.emit({ ...this.model, value: calculatedValue });
   }
 
   private parseInput(value: string) {
     return value.replace(/[^0-9]/g, '');
   }
 
+  private formatThousands(value: number) {
+    return value ? this.whole.toLocaleString() : '';
+  }
+
   private handleWholeChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.whole = Number(this.parseInput(inputElement.value));
-    
-    inputElement.value = this.parseInput(inputElement.value);
+
+    inputElement.value = this.formatThousands(this.whole);
 
     this.updateModel();
   }
@@ -59,7 +63,7 @@ export class AmountInputComponent {
   private handleDecimalsChange(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     this.decimals = Number(this.parseInput(inputElement.value));
-    
+
     inputElement.value = this.parseInput(inputElement.value);
 
     this.updateModel();
@@ -69,16 +73,18 @@ export class AmountInputComponent {
     return (
       <Host>
         <div class="inputContainer">
-          <input aria-label="whole" type="text" placeholder="0" aria-describedby="whole-input" onInput={this.handleWholeChange.bind(this)}/>
-          <span>.</span>
-          <input class="input-decimals"
-            aria-label="decimals" 
-            type="text" 
-            placeholder="00" 
+          <input aria-label="whole" type="text" placeholder="0" aria-describedby="whole-input" maxlength="15" pattern="\d*" onInput={this.handleWholeChange.bind(this)} />
+          <span>{getDecimalSeparator()}</span>
+          <input
+            class="input-decimals"
+            aria-label="decimals"
+            type="text"
+            placeholder="00"
             maxlength="2"
             min="0"
             max="99"
-            aria-describedby="decimals-input" 
+            aria-describedby="decimals-input"
+            pattern="\d*"
             onInput={this.handleDecimalsChange.bind(this)}
           />
         </div>
