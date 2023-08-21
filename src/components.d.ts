@@ -5,13 +5,31 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { FormItemModel } from "./components/amount-input-component/amount-input-component";
+export { FormItemModel } from "./components/amount-input-component/amount-input-component";
 export namespace Components {
+    interface AmountInputComponent {
+        /**
+          * @prop {FormItemModel} model - The form item model containing value and validators.
+         */
+        "model": FormItemModel;
+    }
     interface AppComponent {
     }
     interface FormComponent {
     }
 }
+export interface AmountInputComponentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLAmountInputComponentElement;
+}
 declare global {
+    interface HTMLAmountInputComponentElement extends Components.AmountInputComponent, HTMLStencilElement {
+    }
+    var HTMLAmountInputComponentElement: {
+        prototype: HTMLAmountInputComponentElement;
+        new (): HTMLAmountInputComponentElement;
+    };
     interface HTMLAppComponentElement extends Components.AppComponent, HTMLStencilElement {
     }
     var HTMLAppComponentElement: {
@@ -25,16 +43,29 @@ declare global {
         new (): HTMLFormComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "amount-input-component": HTMLAmountInputComponentElement;
         "app-component": HTMLAppComponentElement;
         "form-component": HTMLFormComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface AmountInputComponent {
+        /**
+          * @prop {FormItemModel} model - The form item model containing value and validators.
+         */
+        "model"?: FormItemModel;
+        /**
+          * Emitted when the form item model is updated.
+          * @event update
+         */
+        "onUpdate"?: (event: AmountInputComponentCustomEvent<FormItemModel>) => void;
+    }
     interface AppComponent {
     }
     interface FormComponent {
     }
     interface IntrinsicElements {
+        "amount-input-component": AmountInputComponent;
         "app-component": AppComponent;
         "form-component": FormComponent;
     }
@@ -43,6 +74,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "amount-input-component": LocalJSX.AmountInputComponent & JSXBase.HTMLAttributes<HTMLAmountInputComponentElement>;
             "app-component": LocalJSX.AppComponent & JSXBase.HTMLAttributes<HTMLAppComponentElement>;
             "form-component": LocalJSX.FormComponent & JSXBase.HTMLAttributes<HTMLFormComponentElement>;
         }
