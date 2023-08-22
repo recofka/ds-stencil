@@ -1,16 +1,10 @@
 # # Stencil Component - amount-input-component
 
-The `amount-input-component` is a Stencil component designed to provide an input field for entering decimal numbers, allowing the user to input both whole and decimal parts. It supports formatting and validation of input. It utilizes the Shadow DOM for encapsulation and reusability.
+The `amount-input-component` is a Stencil component designed to provide an input field for entering decimal numbers, allowing the user to input both whole and decimal parts. It supports validation for empty inputs, inputs containing letters, and negative values. Additionally, the component's monetary formatting is performed using the user's browser locale.
 
 ## Installation
 
 To use the `amount-input-component` in your project, follow these steps:
-
-### Install the package using npm
-
-```bash
-    npm install @design-system-name/amount-input-component --save
-```
 
 ### Import the component in your application:
 

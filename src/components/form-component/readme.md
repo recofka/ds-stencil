@@ -1,16 +1,10 @@
 # Stencil Component - form-component
 
-`form-component` is a Stencil component designed to create a simple form with validation capabilities. It utilizes the Shadow DOM for encapsulation and reusability.
+`form-component` is a Stencil component designed to create a simple form with validation capabilities.
 
 ## Installation
 
 To use the `form-component` in your project, follow these steps:
-
-### Install the package using npm
-
-```bash
-    npm install @design-system-name/form-component --save
-```
 
 ### Import the component in your application:
 
