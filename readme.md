@@ -12,13 +12,19 @@ Welcome to the documentation for the Stencil components developed by me, Denise.
 
 `app-component` is a Stencil component designed to provide a simple container for content.
 
+[More details here.](./src/components/app-component/readme.md)
+
 ### 2. form-component
 
 `form-component` is a Stencil component designed to create a simple form with validation capabilities.
 
+[More details here.](./src/components/form-component/readme.md)
+
 ### 3. amount-input-component
 
 `amount-input-component` is a Stencil component designed for entering decimal numbers with separate whole and decimal parts.
+
+[More details here.](./src/components/amount-input-component/readme.md)
 
 ## Prioritization Note
 
